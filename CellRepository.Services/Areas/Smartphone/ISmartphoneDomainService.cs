@@ -1,4 +1,6 @@
-﻿using CellRepository.DomainServices;
+﻿using CellRepository.Domain.Entities;
+using CellRepository.DomainServices;
+using CellRepository.Infra.DataAcess.Areas;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,9 +9,10 @@ using System.Threading.Tasks;
 
 namespace CellRepository.Services.Areas.Smartphone
 {
-    public interface ISmartphoneDomainService : IDomainServiceBase<Smartphone>
+    public interface ISmartphoneDomainService : IDomainServiceBase<SmartphoneEntity>
     {
-        Task<bool> RegisterANewSmartphone();
+        Task<(string message, bool status)> RegisterANewSmartphoneAsync(SmartphoneEntity model);
 
+        Task<IReadOnlyList<SmartphoneEntity>> GetTop100Smartphones();
     }
 }

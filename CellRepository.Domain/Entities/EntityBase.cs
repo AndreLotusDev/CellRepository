@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using CellRepository.Domain.Entities.Utils;
+using System.Collections.Generic;
 
 namespace CellRepository.Domain.Entities
 {

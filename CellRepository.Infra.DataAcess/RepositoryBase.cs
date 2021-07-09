@@ -1,4 +1,5 @@
 ﻿using CellRepository.Infra.DataAcess.Context;
+using CellRepository.Infra.DataAcess.Interfaces;
 using CellRepository.Infra.DataAcess.Interfaces.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -12,87 +13,102 @@ namespace CellRepository.Infra.DataAcess
 {
     public class RepositoryBase<TEntity> : IDisposable, IRepositoryBase<TEntity> where TEntity : class
     {
-        private readonly CellRepositoryContext Db = new();
+        private readonly CellRepositoryContext _db;
+
+        public RepositoryBase(IContext db)
+        {
+            _db = (CellRepositoryContext)db;
+        }
 
         public void Add(TEntity obj)
         {
-            Db.Set<TEntity>().Add(obj);
-            Db.SaveChanges();
+            _db.Set<TEntity>().Add(obj);
+            _db.SaveChanges();
         }
 
         public TEntity GetById(int id)
         {
-            return Db.Set<TEntity>().Find(id);
+            return _db.Set<TEntity>().Find(id);
         }
 
         public IEnumerable<TEntity> GetAll()
         {
-            return Db.Set<TEntity>().ToList();
+            return _db.Set<TEntity>().ToList();
         }
 
         public void Update(TEntity obj)
         {
-            Db.Entry(obj).State = EntityState.Modified;
-            Db.SaveChanges();
+            _db.Entry(obj).State = EntityState.Modified;
+            _db.SaveChanges();
         }
 
         public void Remove(TEntity obj)
         {
-            Db.Set<TEntity>().Remove(obj);
-            Db.SaveChanges();
+            _db.Set<TEntity>().Remove(obj);
+            _db.SaveChanges();
         }
 
         public void Dispose()
         {
-            Db.Dispose();
+            _db.Dispose();
         }
 
         public IEnumerable<TEntity> GetAllNoCache()
         {
-            return Db.Set<TEntity>().AsNoTracking().ToList();
+            return _db.Set<TEntity>().AsNoTracking().ToList();
         }
 
         public async Task AddAsync(TEntity obj)
         {
-            await Db.Set<TEntity>().AddAsync(obj);
-            await Db.SaveChangesAsync();
+            await _db.Set<TEntity>().AddAsync(obj);
+            await _db.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<TEntity>> GetAllAsync()
         {
-            return await Db.Set<TEntity>().ToListAsync();
+            return await _db.Set<TEntity>().ToListAsync();
         }
 
         public async Task<IEnumerable<TEntity>> GetAllNoCacheAsync()
         {
-            return await Db.Set<TEntity>().AsNoTracking().ToListAsync();
+            return await _db.Set<TEntity>().AsNoTracking().ToListAsync();
         }
 
         public async Task UpdateAsync(TEntity obj)
         {
-            Db.Entry(obj).State = EntityState.Modified;
-            await Db.SaveChangesAsync();
+            _db.Entry(obj).State = EntityState.Modified;
+            await _db.SaveChangesAsync();
         }
 
         public async Task RemoveAsync(TEntity obj)
         {
-            Db.Set<TEntity>().Remove(obj);
-            await Db.SaveChangesAsync();
+            _db.Set<TEntity>().Remove(obj);
+            await _db.SaveChangesAsync();
         }
 
         public async Task DisposeAsync()
         {
-            await Db.DisposeAsync();
+            await _db.DisposeAsync();
         }
 
         public TEntity Get(Expression<Func<TEntity, bool>> predicate)
         {
-            
+            return _db.Set<TEntity>().Where(predicate).FirstOrDefault();
         }
 
-        public Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate)
+        public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate)
         {
-            
+            return await _db.Set<TEntity>().Where(predicate).FirstOrDefaultAsync();
+        }
+
+        public IEnumerable<TEntity> GetAllWith(Expression<Func<TEntity, bool>> predicate)
+        {
+            return _db.Set<TEntity>().Where(predicate).ToList();
+        }
+
+        public async Task<IEnumerable<TEntity>> GetAllWithAsync(Expression<Func<TEntity, bool>> predicate)
+        {
+            return await _db.Set<TEntity>().Where(predicate).ToListAsync();
         }
     }
 }

@@ -1,3 +1,4 @@
+using CellRepository.DepencyInjection;
 using CellRepository.Infra.DataAcess.Context;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -40,6 +41,8 @@ namespace SmartphoneApi
             services.AddDbContext<CellRepositoryContext>(
                 options => options.UseNpgsql(dbConnectionString, optionsBuilder =>
                         optionsBuilder.MigrationsAssembly("CellRepository.Infra.DataAcess")));
+
+            InjectionFactory.ConfigureServices(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

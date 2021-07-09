@@ -21,6 +21,8 @@ namespace CellRepository.Infra.DataAcess.Interfaces.Repositories
 
         TEntity Get(Expression<Func<TEntity, bool>> predicate);
 
+        IEnumerable<TEntity> GetAllWith(Expression<Func<TEntity, bool>> predicate);
+
         void Dispose();
 
         #region Async Methods
@@ -33,6 +35,7 @@ namespace CellRepository.Infra.DataAcess.Interfaces.Repositories
         Task RemoveAsync(TEntity obj);
 
         Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate);
+        Task<IEnumerable<TEntity>> GetAllWithAsync(Expression<Func<TEntity, bool>> predicate);
 
         Task DisposeAsync();
         #endregion

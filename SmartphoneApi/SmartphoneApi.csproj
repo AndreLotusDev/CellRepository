@@ -15,10 +15,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\CellRepository.Application\CellRepository.ApplicationService.csproj" />
+    <ProjectReference Include="..\CellRepository.DepencyInjection\CellRepository.DepencyInjection.csproj" />
+    <ProjectReference Include="..\CellRepository.Generics\CellRepository.Shared.csproj" />
     <ProjectReference Include="..\CellRepository.Infra.DataAcess\CellRepository.Infra.DataAcess.csproj" />
   </ItemGroup>
 

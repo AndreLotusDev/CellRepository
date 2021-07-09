@@ -41,6 +41,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DependencyInjection", "Depe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CellRepository.DepencyInjection", "CellRepository.DepencyInjection\CellRepository.DepencyInjection.csproj", "{8F434CBD-1212-4640-AB4C-0ACE929824EC}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{0476E9B5-F0A4-4970-902E-19790CFC7C9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CellRepository.Shared", "CellRepository.Generics\CellRepository.Shared.csproj", "{164D550D-FB05-4F4A-A27B-C400CBCF9387}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C763D918-F900-4390-9C14-0A9EC3DE7F5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +89,10 @@ Global
 		{8F434CBD-1212-4640-AB4C-0ACE929824EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F434CBD-1212-4640-AB4C-0ACE929824EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F434CBD-1212-4640-AB4C-0ACE929824EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{164D550D-FB05-4F4A-A27B-C400CBCF9387}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{164D550D-FB05-4F4A-A27B-C400CBCF9387}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{164D550D-FB05-4F4A-A27B-C400CBCF9387}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{164D550D-FB05-4F4A-A27B-C400CBCF9387}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -101,6 +111,7 @@ Global
 		{3085FBD0-CCFD-43C3-821F-B414A68D87C2} = {29C4F156-61FB-4563-A409-0BB8EAD3B2B9}
 		{FFAC5981-9291-4403-93B8-15AA3F6FE2B7} = {3964A550-E533-439F-A7E3-84EA5626F64C}
 		{8F434CBD-1212-4640-AB4C-0ACE929824EC} = {FFAC5981-9291-4403-93B8-15AA3F6FE2B7}
+		{164D550D-FB05-4F4A-A27B-C400CBCF9387} = {0476E9B5-F0A4-4970-902E-19790CFC7C9A}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4D310F85-3AB8-4F61-8785-4205B77F4C18}

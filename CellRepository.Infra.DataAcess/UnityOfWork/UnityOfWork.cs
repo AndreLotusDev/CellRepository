@@ -1,6 +1,7 @@
 ﻿using CellRepository.Domain.Interfaces.Repositories;
 using CellRepository.Infra.DataAcess.Areas;
 using CellRepository.Infra.DataAcess.Context;
+using CellRepository.Infra.DataAcess.Interfaces;
 using System;
 using System.Threading.Tasks;
 
@@ -8,12 +9,12 @@ namespace CellRepository.Infra.DataAcess.UnityOfWork
 {
     public class UnityOfWork : IUnityOfWork, IDisposable
     {
-        private readonly CellRepositoryContext db = null;
+        private readonly CellRepositoryContext _db = null;
         private ISmartphoneRepository smartphoneRepository = null;
 
-        public UnityOfWork()
+        public UnityOfWork(IContext db)
         {
-            db = new CellRepositoryContext();
+            _db = (CellRepositoryContext)db;
         }
 
         public ISmartphoneRepository SmartphoneRepository
@@ -22,7 +23,7 @@ namespace CellRepository.Infra.DataAcess.UnityOfWork
             {
                 if (smartphoneRepository == null)
                 {
-                    smartphoneRepository = new SmartphoneRepository();
+                    smartphoneRepository = new SmartphoneRepository(_db);
                 }
                 return smartphoneRepository;
             }
@@ -30,17 +31,17 @@ namespace CellRepository.Infra.DataAcess.UnityOfWork
 
         public void Commit()
         {
-            db.SaveChanges();
+            _db.SaveChanges();
         }
 
         public async Task CommitAsync()
         {
-            await db.SaveChangesAsync();
+            await _db.SaveChangesAsync();
         }
 
         public void Dispose()
         {
-            db.Dispose();
+            _db.Dispose();
         }
     }
 

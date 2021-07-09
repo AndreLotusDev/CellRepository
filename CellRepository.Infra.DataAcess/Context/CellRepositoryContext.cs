@@ -1,15 +1,11 @@
 ﻿using CellRepository.Domain.Entities;
+using CellRepository.Infra.DataAcess.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 namespace CellRepository.Infra.DataAcess.Context
 {
-    public class CellRepositoryContext : DbContext
+    public class CellRepositoryContext : DbContext , IContext 
     {
-        public CellRepositoryContext() : base() 
-        { 
-        
-        }
-
         public CellRepositoryContext(DbContextOptions<CellRepositoryContext> options) : base(options)
         {
             
@@ -22,8 +18,9 @@ namespace CellRepository.Infra.DataAcess.Context
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<SmartphoneEntity>().Property(m => m.Name).IsRequired();
+            builder.Entity<SmartphoneEntity>().ToTable("Smartphones");
                 
+            builder.Entity<SmartphoneEntity>().Property(m => m.Name).IsRequired();
         }
     }
 }

@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CellRepository.Services\CellRepository.DomainServices.csproj" />
+    <PackageReference Include="Enums.NET" Version="4.0.0" />
   </ItemGroup>
 
 </Project>
