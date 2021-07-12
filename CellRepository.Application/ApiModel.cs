@@ -14,7 +14,7 @@ namespace CellRepository.ApplicationService
 
         public T Data { get; private set; }
 
-        private List<string> _comments;
+        private readonly List<string> _comments;
 
         public Tuple<string, bool> IsValid()
         {

@@ -3,15 +3,17 @@ using System;
 using CellRepository.Infra.DataAcess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace CellRepository.Infra.DataAcess.Migrations
 {
     [DbContext(typeof(CellRepositoryContext))]
-    partial class CellRepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20210712212618_add_more_stuff_smartphone_rate10field")]
+    partial class add_more_stuff_smartphone_rate10field
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -19,7 +21,7 @@ namespace CellRepository.Infra.DataAcess.Migrations
                 .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-            modelBuilder.Entity("CellRepository.Domain.Entities.SmartphoneEntity", b =>
+            modelBuilder.Entity("CellRepository.Domain.Entities.PerformanceEntity", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -40,26 +42,6 @@ namespace CellRepository.Infra.DataAcess.Migrations
                     b.Property<DateTime>("DateOfUpdate")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<string>("Description")
-                        .HasMaxLength(1500)
-                        .HasColumnType("character varying(1500)")
-                        .HasComment("To describe the principal characteristics of the smartphone");
-
-                    b.Property<DateTime>("LaunchDate")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("Date")
-                        .HasDefaultValue(new DateTime(2021, 7, 12, 18, 38, 29, 950, DateTimeKind.Local).AddTicks(2794))
-                        .HasComment("Describes the launching date of this smartphone");
-
-                    b.Property<string>("OsName")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("character varying(100)")
-                        .HasComment("Describes the version of the smartphone");
-
-                    b.Property<int>("PerformanceInfoId")
-                        .HasColumnType("integer");
-
                     b.Property<decimal>("PerformancePoints")
                         .HasColumnType("Numeric(2)")
                         .HasComment("Rate 0 to 10 about the performance in overall");
@@ -69,6 +51,50 @@ namespace CellRepository.Infra.DataAcess.Migrations
                         .HasComment("Rate 0 to 10 about the screen");
 
                     b.Property<int>("SmartphoneId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("UserIdLastChange")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SmartphoneId")
+                        .IsUnique();
+
+                    b.ToTable("PerfomanceInfo");
+                });
+
+            modelBuilder.Entity("CellRepository.Domain.Entities.SmartphoneEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<DateTime>("DateOfCreation")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<DateTime>("DateOfUpdate")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(1500)
+                        .HasColumnType("character varying(1500)")
+                        .HasComment("To describe the principal characteristics of the smartphone");
+
+                    b.Property<DateTime>("LaunchDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("Date")
+                        .HasDefaultValue(new DateTime(2021, 7, 12, 18, 26, 17, 630, DateTimeKind.Local).AddTicks(2709))
+                        .HasComment("Describes the date launching of this smartphone");
+
+                    b.Property<string>("OsName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)")
+                        .HasComment("Describes the version of the smartphone");
+
+                    b.Property<int>("PerformanceInfoId")
                         .HasColumnType("integer");
 
                     b.Property<string>("SmartphoneName")
@@ -87,6 +113,22 @@ namespace CellRepository.Infra.DataAcess.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Smartphones");
+                });
+
+            modelBuilder.Entity("CellRepository.Domain.Entities.PerformanceEntity", b =>
+                {
+                    b.HasOne("CellRepository.Domain.Entities.SmartphoneEntity", "Smartphone")
+                        .WithOne("PerfomanceInfo")
+                        .HasForeignKey("CellRepository.Domain.Entities.PerformanceEntity", "SmartphoneId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Smartphone");
+                });
+
+            modelBuilder.Entity("CellRepository.Domain.Entities.SmartphoneEntity", b =>
+                {
+                    b.Navigation("PerfomanceInfo");
                 });
 #pragma warning restore 612, 618
         }

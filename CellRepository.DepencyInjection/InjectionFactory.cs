@@ -27,9 +27,9 @@ namespace CellRepository.DepencyInjection
             services.AddSingleton(typeof(IRepositoryBase<>), typeof(RepositoryBase<>));
             services.AddSingleton(typeof(IDomainServiceBase<>), typeof(DomainServiceBase<>));
 
-            services.AddTransient<SmartphoneService, SmartphoneService>();
             services.AddTransient<ISmartphoneRepository, SmartphoneRepository>();
             services.AddTransient<ISmartphoneDomainService, SmartphoneDomainService>();
+            services.AddTransient<ISmartphoneApplicationService, SmartphoneApplicationService>();
         }
     }
 }

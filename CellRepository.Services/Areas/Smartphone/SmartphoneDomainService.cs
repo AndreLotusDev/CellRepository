@@ -29,11 +29,11 @@ namespace CellRepository.Services.Areas.Smartphone
                 return ($"U need to validate {model.GetFirstValidationMessage()}",false);
             }
 
-            var existOneModel = await UOF.SmartphoneRepository.GetAsync(m => m.Name.ToUpper() == model.Name.ToUpper());
+            var existOneModel = await UOF.SmartphoneRepository.GetAsync(m => m.SmartphoneName.ToUpper() == model.SmartphoneName.ToUpper());
 
             if (!(existOneModel is null))
             { 
-                AddMessage(nameof(SmartphoneEntity.Name), "Already exists");
+                AddMessage(nameof(SmartphoneEntity.SmartphoneName), "Already exists");
                 return ("Already exists a smartphone with this name in the database", false);
             }
 

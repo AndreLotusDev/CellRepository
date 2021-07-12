@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace CellRepository.ApplicationService.Areas.Smartphone
 {
-    public class SmartphoneService
+    public class SmartphoneApplicationService : ISmartphoneApplicationService
     {
         private readonly ISmartphoneDomainService _smartphoneDS;
-        public SmartphoneService(ISmartphoneDomainService smartphoneDS)
+        public SmartphoneApplicationService(ISmartphoneDomainService smartphoneDS)
         {
             _smartphoneDS = smartphoneDS;
         }

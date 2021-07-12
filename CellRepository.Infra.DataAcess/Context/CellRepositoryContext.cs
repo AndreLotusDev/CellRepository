@@ -1,4 +1,5 @@
 ﻿using CellRepository.Domain.Entities;
+using CellRepository.Infra.DataAcess.EntityConfig.Areas;
 using CellRepository.Infra.DataAcess.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,11 +17,9 @@ namespace CellRepository.Infra.DataAcess.Context
             options.UseNpgsql();
         }
 
-        protected override void OnModelCreating(ModelBuilder builder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            builder.Entity<SmartphoneEntity>().ToTable("Smartphones");
-                
-            builder.Entity<SmartphoneEntity>().Property(m => m.Name).IsRequired();
+            ConfigSmartphoneEntity.Config(modelBuilder);
         }
     }
 }

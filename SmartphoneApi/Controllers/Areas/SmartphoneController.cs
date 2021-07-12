@@ -14,8 +14,8 @@ namespace SmartphoneApi.Controllers.Areas
     [Route("Areas/Smartphone")]
     public class SmartphoneController : Controller
     {
-        private readonly SmartphoneService _smartphoneS;
-        public SmartphoneController(SmartphoneService smart)
+        private readonly ISmartphoneApplicationService _smartphoneS;
+        public SmartphoneController(ISmartphoneApplicationService smart)
         {
             _smartphoneS = smart;
         }
