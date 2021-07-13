@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31410.223
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CellRepository", "CellRepository\CellRepository.csproj", "{26D18F17-451F-4904-8938-E4EA01F37F0F}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{75C761F5-9C78-494E-8E4D-B51FD7B89B1E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{75D03399-8EEB-424A-80FB-9EC38FF10797}"
@@ -35,17 +33,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SmartphoneApi", "Smartphone
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ApplicationService", "ApplicationService", "{29C4F156-61FB-4563-A409-0BB8EAD3B2B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CellRepository.ApplicationService", "CellRepository.Application\CellRepository.ApplicationService.csproj", "{3085FBD0-CCFD-43C3-821F-B414A68D87C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CellRepository.ApplicationService", "CellRepository.Application\CellRepository.ApplicationService.csproj", "{3085FBD0-CCFD-43C3-821F-B414A68D87C2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DependencyInjection", "DependencyInjection", "{FFAC5981-9291-4403-93B8-15AA3F6FE2B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CellRepository.DepencyInjection", "CellRepository.DepencyInjection\CellRepository.DepencyInjection.csproj", "{8F434CBD-1212-4640-AB4C-0ACE929824EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CellRepository.DepencyInjection", "CellRepository.DepencyInjection\CellRepository.DepencyInjection.csproj", "{8F434CBD-1212-4640-AB4C-0ACE929824EC}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{0476E9B5-F0A4-4970-902E-19790CFC7C9A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CellRepository.Shared", "CellRepository.Generics\CellRepository.Shared.csproj", "{164D550D-FB05-4F4A-A27B-C400CBCF9387}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CellRepository.Shared", "CellRepository.Generics\CellRepository.Shared.csproj", "{164D550D-FB05-4F4A-A27B-C400CBCF9387}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{C763D918-F900-4390-9C14-0A9EC3DE7F5F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CellPresentation", "CellPresentation\CellPresentation.csproj", "{2479CCEE-61C8-4571-A044-C507401A4BFF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,10 +53,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{26D18F17-451F-4904-8938-E4EA01F37F0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{26D18F17-451F-4904-8938-E4EA01F37F0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{26D18F17-451F-4904-8938-E4EA01F37F0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{26D18F17-451F-4904-8938-E4EA01F37F0F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D496DDA4-2DBD-4686-AB9A-6EA55F8F0694}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D496DDA4-2DBD-4686-AB9A-6EA55F8F0694}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D496DDA4-2DBD-4686-AB9A-6EA55F8F0694}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -93,12 +89,15 @@ Global
 		{164D550D-FB05-4F4A-A27B-C400CBCF9387}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{164D550D-FB05-4F4A-A27B-C400CBCF9387}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{164D550D-FB05-4F4A-A27B-C400CBCF9387}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2479CCEE-61C8-4571-A044-C507401A4BFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2479CCEE-61C8-4571-A044-C507401A4BFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2479CCEE-61C8-4571-A044-C507401A4BFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2479CCEE-61C8-4571-A044-C507401A4BFF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{26D18F17-451F-4904-8938-E4EA01F37F0F} = {75C761F5-9C78-494E-8E4D-B51FD7B89B1E}
 		{C6A2ED8F-2563-4A7D-A83B-321560F9FED9} = {3964A550-E533-439F-A7E3-84EA5626F64C}
 		{D496DDA4-2DBD-4686-AB9A-6EA55F8F0694} = {C6A2ED8F-2563-4A7D-A83B-321560F9FED9}
 		{9629C144-BC7D-4513-BBBE-727EE7222052} = {75D03399-8EEB-424A-80FB-9EC38FF10797}
@@ -112,6 +111,7 @@ Global
 		{FFAC5981-9291-4403-93B8-15AA3F6FE2B7} = {3964A550-E533-439F-A7E3-84EA5626F64C}
 		{8F434CBD-1212-4640-AB4C-0ACE929824EC} = {FFAC5981-9291-4403-93B8-15AA3F6FE2B7}
 		{164D550D-FB05-4F4A-A27B-C400CBCF9387} = {0476E9B5-F0A4-4970-902E-19790CFC7C9A}
+		{2479CCEE-61C8-4571-A044-C507401A4BFF} = {75C761F5-9C78-494E-8E4D-B51FD7B89B1E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4D310F85-3AB8-4F61-8785-4205B77F4C18}

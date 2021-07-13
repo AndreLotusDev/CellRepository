@@ -55,8 +55,8 @@ namespace CellRepository.Infra.DataAcess.EntityConfig.Areas
                 .HasComment("Rate 0 to 10 about the screen");
 
             smartphone.Property(m => m.PerformancePoints).IsRequired()
-              .HasColumnType("Numeric(2)")
-              .HasComment("Rate 0 to 10 about the performance in overall");
+                .HasColumnType("Numeric(2)")
+                .HasComment("Rate 0 to 10 about the performance in overall");
             #endregion
         }
     }
