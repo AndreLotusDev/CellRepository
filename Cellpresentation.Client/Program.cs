@@ -8,7 +8,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CellPresentation
+namespace Cellpresentation.Client
 {
     public class Program
     {

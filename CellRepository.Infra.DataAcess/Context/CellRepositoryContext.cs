@@ -20,6 +20,7 @@ namespace CellRepository.Infra.DataAcess.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             ConfigSmartphoneEntity.Config(modelBuilder);
+            ConfigUserLoginEntity.Config(modelBuilder);
         }
     }
 }
