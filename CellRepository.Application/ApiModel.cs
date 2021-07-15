@@ -14,6 +14,7 @@ namespace CellRepository.ApplicationService
 
         public T Data { get; private set; }
 
+        //Information for the front end
         private readonly List<string> _comments;
 
         public Tuple<string, bool> IsValid()
@@ -27,24 +28,39 @@ namespace CellRepository.ApplicationService
             return new Tuple<string, bool>("OK", false);
         }
 
+        /// <summary>
+        /// Adds a new commentary in the list of comments to go to the front
+        /// </summary>
+        /// <param name="comment"></param>
         public void AddComment(string comment)
         {
             if (string.Empty == comment)
                 return;
 
-            _comments.Add(comment);
+            _comments?.Add(comment);
         }
 
+        /// <summary>
+        /// Clears all the comment
+        /// </summary>
         public void ClearComments()
         {
-            _comments.Clear();
+            _comments?.Clear();
         }
 
+        /// <summary>
+        /// Get the whole list of comments to see what's happening
+        /// </summary>
+        /// <returns></returns>
         public IReadOnlyCollection<string> GetComments()
         {
-            return _comments.AsReadOnly();
+            return _comments?.AsReadOnly();
         }
 
+        /// <summary>
+        /// Set the information
+        /// </summary>
+        /// <param name="data"></param>
         public void SetData(T data)
         {
             Data = data;

@@ -9,10 +9,11 @@ namespace CellRepository.ApplicationService
     public enum EStatusCode
     {
         NonConfigured,
-        Ok,
         NOk,
-        BadRequisition,
-        NotAllowed,
-        Success
+        Ok = 200,
+        BadRequisition = 400,
+        Success = 201,
+        NotAllowed = 405,
+        ImATeaPot = 418
     }
 }

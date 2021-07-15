@@ -6,18 +6,25 @@ namespace CellRepository.Domain.Entities
 {
     public abstract class EntityBase : Valuent
     {
-        protected EntityBase(DateTime dateOfCreation, DateTime dateOfUpdate, int userIdLastChange)
+        public int Id { get; private set; }
+        public DateTime DateOfCreation { get; private set; }
+        public DateTime DateOfUpdate { get; private set; }
+
+        public int UserIdLastChange { get; private set; }
+
+        public void UpdateDateOfCreation()
         {
-            DateOfCreation = dateOfCreation;
-            DateOfUpdate = dateOfUpdate;
-            UserIdLastChange = userIdLastChange;
+            DateOfCreation = DateTime.Now;
         }
 
-        public int Id { get; private set; }
-        public DateTime DateOfCreation { get; init; }
-        public DateTime DateOfUpdate { get; init; }
+        public void UpdateDateUpdate()
+        {
+            DateOfUpdate = DateTime.Now;
+        }
 
-        public int UserIdLastChange { get; init; }
-
+        public void ChangeIduser(int idUser)
+        {
+            UserIdLastChange = idUser;
+        }
     }
 }

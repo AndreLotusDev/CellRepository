@@ -1,13 +1,14 @@
 ﻿using CellRepository.Domain.Entities;
 using CellRepository.DomainServices;
 using CellRepository.Infra.DataAcess.UnityOfWork;
+using CellRepository.Services.Areas.Smartphone;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace CellRepository.Services.Areas.Smartphone
+namespace CellRepository.Services.Areas.User
 {
     public class SmartphoneDomainService : DomainServiceBase<SmartphoneEntity> ,ISmartphoneDomainService
     {

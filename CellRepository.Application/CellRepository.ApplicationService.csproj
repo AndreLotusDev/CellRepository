@@ -5,6 +5,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CellRepository.ApplicationModels\CellRepository.ApplicationModels.csproj" />
     <ProjectReference Include="..\CellRepository.Services\CellRepository.DomainServices.csproj" />
   </ItemGroup>
 

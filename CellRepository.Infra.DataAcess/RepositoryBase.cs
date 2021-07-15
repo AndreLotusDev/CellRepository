@@ -23,7 +23,6 @@ namespace CellRepository.Infra.DataAcess
         public void Add(TEntity obj)
         {
             _db.Set<TEntity>().Add(obj);
-            _db.SaveChanges();
         }
 
         public TEntity GetById(int id)
@@ -39,13 +38,11 @@ namespace CellRepository.Infra.DataAcess
         public void Update(TEntity obj)
         {
             _db.Entry(obj).State = EntityState.Modified;
-            _db.SaveChanges();
         }
 
         public void Remove(TEntity obj)
         {
             _db.Set<TEntity>().Remove(obj);
-            _db.SaveChanges();
         }
 
         public void Dispose()
@@ -61,7 +58,6 @@ namespace CellRepository.Infra.DataAcess
         public async Task AddAsync(TEntity obj)
         {
             await _db.Set<TEntity>().AddAsync(obj);
-            await _db.SaveChangesAsync();
         }
 
         public async Task<IEnumerable<TEntity>> GetAllAsync()
@@ -72,18 +68,6 @@ namespace CellRepository.Infra.DataAcess
         public async Task<IEnumerable<TEntity>> GetAllNoCacheAsync()
         {
             return await _db.Set<TEntity>().AsNoTracking().ToListAsync();
-        }
-
-        public async Task UpdateAsync(TEntity obj)
-        {
-            _db.Entry(obj).State = EntityState.Modified;
-            await _db.SaveChangesAsync();
-        }
-
-        public async Task RemoveAsync(TEntity obj)
-        {
-            _db.Set<TEntity>().Remove(obj);
-            await _db.SaveChangesAsync();
         }
 
         public async Task DisposeAsync()

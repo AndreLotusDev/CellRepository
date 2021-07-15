@@ -19,7 +19,7 @@ namespace CellRepository.Infra.DataAcess.EntityConfig.Areas
                 .HasMaxLength(1000)
                 .HasComment("This column store the email of the user (encrypted)");
 
-            user.Property(m => m.NameInSite).IsRequired()
+            user.Property(m => m.NameInSite).IsRequired(false)
                 .HasMaxLength(1000)
                 .HasComment("This store the name of the user, cannot be equal of another");
 

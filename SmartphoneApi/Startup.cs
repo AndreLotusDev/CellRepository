@@ -1,5 +1,7 @@
+using AutoMapper;
 using CellRepository.DepencyInjection;
 using CellRepository.Infra.DataAcess.Context;
+using CellRepository.Infra.Mappings;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -31,6 +33,16 @@ namespace SmartphoneApi
 
             string dbConnectionString = Configuration.GetConnectionString("SmartphoneDb");
 
+            #region Configuring The Mapper
+            var configMap = new MapperConfiguration(cfg =>
+                {
+                    ConfigGeneral.OnConfigure(cfg);
+                });
+
+            IMapper mapper = configMap.CreateMapper();
+            services.AddSingleton(mapper); 
+            #endregion
+
             services.AddDbContext<CellRepositoryContext>(
                 options => options.UseNpgsql(dbConnectionString, optionsBuilder =>
                         optionsBuilder.MigrationsAssembly("CellRepository.Infra.DataAcess")));
@@ -47,6 +59,9 @@ namespace SmartphoneApi
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "SmartphoneApi v1"));
             }
+
+            //Needs to be configured on the future
+            app.UseCors(cfg => cfg.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
 
             app.UseHttpsRedirection();
 

@@ -1,34 +1,44 @@
 ﻿@page "/"
 
-<div class="card">
+@inherits IndexBase
+
+<EditForm Model="@userDto" class="card" OnValidSubmit="@RegisterUserAsync">
     <div class="card-content">
         <div class="content">
+
             <section id="area_login" class="">
-                <form class="">
 
-                    <div class="columns is-centered">
-                        <div class="is-half column form_login">
-                            <label>Email: </label>
-                            <input class="input" type="text" placeholder="Text input">
-                        </div>
+                <DataAnnotationsValidator></DataAnnotationsValidator>
+                <ValidationSummary></ValidationSummary>
+
+
+                <div class="columns is-centered">
+                    <div class="is-half column form_login">
+                        <label>Email: </label>
+                        <InputText class="input" type="text" placeholder="Text input" @bind-Value="userDto.Email"></InputText>
+                        <ValidationMessage For="@(() => userDto.Email)"></ValidationMessage>
                     </div>
+                </div>
 
-                    <div class="columns is-centered form_login">
-                        <div class="is-half column">
-                            <label>Senha: </label>
-                            <input class="input" type="text" placeholder="Text input">
-                        </div>
+                <div class="columns is-centered form_login">
+                    <div class="is-half column">
+                        <label>Senha: </label>
+                        <InputText class="input" type="text" placeholder="Text input" @bind-Value="userDto.Password"></InputText>
+                        <ValidationMessage For="@(() => userDto.Password)"></ValidationMessage>
                     </div>
+                </div>
 
-                    <hr />
+                <hr />
 
-                    <label class="checkbox">
-                        <input type="checkbox">
-                        Já possuo conta
-                    </label>
-                </form>
+                <label class="checkbox">
+                    <input type="checkbox">
+                    Já possuo conta
+                </label>
+
+                <button class="button" type="submit"></button>
+
             </section>
         </div>
     </div>
-</div>
+</EditForm>
 

@@ -4,10 +4,6 @@ namespace CellRepository.Domain.Entities
 {
     public class SmartphoneEntity : EntityBase
     {
-        public SmartphoneEntity(DateTime dateOfCreation, DateTime dateOfUpdate, int userIdLastChange) : base(dateOfCreation, dateOfUpdate, userIdLastChange)
-        {
-        }
-
         public string SmartphoneName { get; init; }
         public string Description { get; init; }
         public string OsName { get; init; }
@@ -19,5 +15,10 @@ namespace CellRepository.Domain.Entities
         public int? CameraPoints { get; init; }
         public int? ScreenPoints { get; init; }
         public int PerformancePoints { get; init; }
+
+        public override void Validate()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

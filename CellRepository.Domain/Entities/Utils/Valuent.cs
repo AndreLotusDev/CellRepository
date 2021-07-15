@@ -9,10 +9,7 @@ namespace CellRepository.Domain.Entities.Utils
         [NotMapped]
         public Dictionary<int, PropertyMessage> NotificationsList { get; private set; }
 
-        public Valuent()
-        {
-
-        }
+        public abstract void Validate();
 
         /// <summary>
         /// Pushs a new notification to the top of the list

@@ -8,17 +8,27 @@ namespace CellRepository.Domain.Entities
 {
     public class UserLoginEntity : EntityBase
     {
-        public UserLoginEntity(DateTime dateOfCreation, DateTime dateOfUpdate, int userIdLastChange) : base(dateOfCreation, dateOfUpdate, userIdLastChange)
-        {
-
-        }
-
         public string NameInSite { get; init; }
         public string RealName { get; init; }
         public string Password { get; init; }
         public string Email { get; init; }
-        public DateTime? LastTimeLogged { get; init; }
-        public int TentativesOfLogin { get; init; }
-        public string MagicCode { get; init; }
+        public DateTime? LastTimeLogged { get; private set; }
+        public int TentativesOfLogin { get; private set; }
+        public string MagicCode { get; private set; }
+
+        public override void Validate()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetTentativeOfLoginRegister()
+        {
+            TentativesOfLogin = 0;
+        }
+
+        public void SetMagicCode()
+        {
+            MagicCode = Guid.NewGuid().ToString().Remove(23);
+        }
     }
 }

@@ -30,10 +30,6 @@ namespace CellRepository.Infra.DataAcess.Interfaces.Repositories
         Task<IEnumerable<TEntity>> GetAllAsync();
         Task<IEnumerable<TEntity>> GetAllNoCacheAsync();
 
-        Task UpdateAsync(TEntity obj);
-
-        Task RemoveAsync(TEntity obj);
-
         Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> predicate);
         Task<IEnumerable<TEntity>> GetAllWithAsync(Expression<Func<TEntity, bool>> predicate);
 

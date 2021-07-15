@@ -1,15 +1,16 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\" />
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <ProjectReference Include="..\CellRepository.ApplicationModels\CellRepository.ApplicationModels.csproj" />
+    <ProjectReference Include="..\CellRepository.Domain\CellRepository.Domain.csproj" />
   </ItemGroup>
 
 </Project>
