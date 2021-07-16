@@ -7,6 +7,11 @@ namespace CellRepository.Infra.DataAcess.Context
 {
     public class CellRepositoryContext : DbContext , IContext 
     {
+        public CellRepositoryContext()
+        {
+                
+        }
+
         public CellRepositoryContext(DbContextOptions<CellRepositoryContext> options) : base(options)
         {
             
