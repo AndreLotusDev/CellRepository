@@ -81,7 +81,13 @@
                 url: "@(config.BaseUrl)/Areas/User/RegisterANewUserAsync",
                 data: JSON.stringify(user),
                 success: function (res) {
-                    Swal.fire("Cadastro com sucesso")
+
+                    debugger
+
+                    if(res.IsOk)
+                        Swal.fire("Cadastro realizado com sucesso!")
+                    else
+                        Swal.fire(res.data)
                 }
             })
         }

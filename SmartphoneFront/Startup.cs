@@ -31,6 +31,8 @@ namespace SmartphoneFront
 
             config.BaseUrl = Configuration.GetSection("ConnectionStrings").GetValue<string>("EndpointApi");
 
+            string secretKey = Configuration.GetValue<string>("SecretKey");
+
             services.AddSingleton(config);
         }
 

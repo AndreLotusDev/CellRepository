@@ -51,8 +51,9 @@ namespace SmartphoneApi
             InjectionFactory.ConfigureServices(services);
 
             string keyCript = Configuration.GetValue<string>("PasswordKey");
+            string secretKey = Configuration.GetValue<string>("SecretKey");
 
-            ConfigJson configJson = new(keyCript);
+            ConfigJson configJson = new(keyCript, secretKey);
 
             services.AddSingleton(configJson);
         }

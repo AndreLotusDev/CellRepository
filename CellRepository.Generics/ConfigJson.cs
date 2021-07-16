@@ -8,11 +8,13 @@ namespace CellRepository.Shared
 {
     public class ConfigJson
     {
-        public ConfigJson(string encryptString)
+        public ConfigJson(string encryptString, string secretKey)
         {
             EncriptString = encryptString;
+            SecretKey = secretKey;
         }
 
         public string EncriptString { get; init; }
+        public string SecretKey { get; init; }
     }
 }

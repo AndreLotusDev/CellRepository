@@ -11,6 +11,7 @@ namespace CellRepository.ApplicationService
         }
 
         public EStatusCode StatusCode { get; set; }
+        public bool IsOk { get; set; }
 
         public T Data { get; private set; }
 

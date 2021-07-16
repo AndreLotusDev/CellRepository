@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CellRepository.Domain.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace CellRepository.Domain.Entities
         public DateTime? LastTimeLogged { get; private set; }
         public int TentativesOfLogin { get; private set; }
         public string MagicCode { get; private set; }
+        public ERoles Role { get; private set; }
 
         public override void Validate()
         {

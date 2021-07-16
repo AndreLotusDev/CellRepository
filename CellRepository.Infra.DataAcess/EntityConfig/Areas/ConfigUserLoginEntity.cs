@@ -41,6 +41,9 @@ namespace CellRepository.Infra.DataAcess.EntityConfig.Areas
 
             user.Property(m => m.LastTimeLogged).IsRequired(false)
                 .HasComment("Last time the user logged in the system (WIP)");
+
+            user.Property(m => m.Role).IsRequired()
+                .HasComment("Delimits what the user can do and cannt do");
         }
     }
 }

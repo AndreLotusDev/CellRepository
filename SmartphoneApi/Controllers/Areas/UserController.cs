@@ -41,12 +41,14 @@ namespace SmartphoneApi.Controllers.Areas
                 if (addUserServiceResponse.status)
                 {
                     modelToReturn.StatusCode = EStatusCode.Ok;
+                    modelToReturn.IsOk = true;
                     modelToReturn.SetData(addUserServiceResponse.message);
                     modelToReturn.AddComment(addUserServiceResponse.message);
                 }
                 else
                 {
                     modelToReturn.StatusCode = EStatusCode.ImATeaPot;
+                    modelToReturn.IsOk = true;
                     modelToReturn.SetData(addUserServiceResponse.message);
                     modelToReturn.AddComment(addUserServiceResponse.message);
                 }

@@ -20,5 +20,7 @@ namespace CellRepository.ApplicationModels
             EmailAddress(ErrorMessage = "Não é um email válido")]
         public string Email { get; set; }
         public string RealName { get; set; }
+
+        public string Role { get; set; }
     }
 }

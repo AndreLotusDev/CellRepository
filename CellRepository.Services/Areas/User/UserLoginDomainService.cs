@@ -29,18 +29,18 @@ namespace CellRepository.Services.Areas.User
                     await UOF.UserLoginRepository.AddAsync(userToRegister);
                     await UOF.CommitAsync();
 
-                    return ("User saved with success", true);
+                    return ("Usuário salvo com sucesso", true);
                 }
             }
 
             else if (userAlreadyExist.Email == userToRegister.Email)
             {
-                return ("This emails is already being used", false);
+                return ("Este email já está sendo usado", false);
             }
 
             else if (userAlreadyExist.NameInSite == userToRegister.NameInSite)
             {
-                return ("This name of user is already being used", false);
+                return ("Este nome de usuário já está sendo usado", false);
             }
 
             return ("OK?", true);

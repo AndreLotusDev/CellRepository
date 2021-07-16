@@ -1,4 +1,5 @@
 ﻿using CellRepository.Domain.Entities;
+using CellRepository.Domain.Enum;
 using CellRepository.Infra.DataAcess.EntityConfig.Areas;
 using CellRepository.Infra.DataAcess.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -26,6 +27,8 @@ namespace CellRepository.Infra.DataAcess.Context
         {
             ConfigSmartphoneEntity.Config(modelBuilder);
             ConfigUserLoginEntity.Config(modelBuilder);
+
+            modelBuilder.HasPostgresEnum<ERoles>();
         }
     }
 }

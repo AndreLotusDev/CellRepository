@@ -27,13 +27,8 @@ namespace CellRepository.Test.Area.User
             _uof = new();
             _ulRepo = new();
 
-            var logins = new List<UserLoginEntity>
-            { 
-                new UserLoginEntity { Email = "andrsoares953@yahoo.com", Password = "12345678910"},
-                new UserLoginEntity { Email = "andrsoares955@yahoo.com", Password = "12345678910"},
-            };
-
-            _ulRepo.Setup(x => x.GetAsync(It.IsAny<Expression<Func<UserLoginEntity, bool>>>())).ReturnsAsync(new UserLoginEntity { Email = "andrsoares955@yahoo.com", Password = "12345678910", NameInSite = "WhiteLotusZuko" });
+            _ulRepo.Setup(x => x.GetAsync(It.IsAny<Expression<Func<UserLoginEntity, bool>>>()))
+                .ReturnsAsync(new UserLoginEntity { Email = "andrsoares955@yahoo.com", Password = "12345678910", NameInSite = "WhiteLotusZuko" });
 
             _uof.SetupGet(x => x.UserLoginRepository).Returns(_ulRepo.Object);
 
@@ -48,7 +43,7 @@ namespace CellRepository.Test.Area.User
         public async Task Cannot_Create_A_Two_Times_The_Same_Email()
         {
             var alreadyExist = new UserLoginEntity { Email = "andrsoares955@yahoo.com", Password = "12345678910" };
-            var expectedMessageError = "This emails is already being used";
+            var expectedMessageError = "Este email já está sendo usado";
 
             var result = await _userLoginService.RegisterANewUserAsync(alreadyExist);
 
@@ -64,7 +59,7 @@ namespace CellRepository.Test.Area.User
         public async Task Cannot_Create_The_SameUserName()
         {
             var alreadyExist = new UserLoginEntity { Email = "andrsoares957@yahoo.com", Password = "12345678910", NameInSite = "WhiteLotusZuko" };
-            var expectedMessageError = "This name of user is already being used";
+            var expectedMessageError = "Este nome de usuário já está sendo usado";
 
             var result = await _userLoginService.RegisterANewUserAsync(alreadyExist);
 
