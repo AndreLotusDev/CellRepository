@@ -13,7 +13,7 @@ namespace CellRepository.ApplicationModels
         [Required, MinLength(10, ErrorMessage = "Sua senha deve conter no mínimo 10 carácteres")]
         public string Password { get; set; }
 
-        //[Required(ErrorMessage = "O nome de usuário é obrigatório")]
+        [Required(ErrorMessage = "O nome de usuário é obrigatório")]
         public string UserName { get; set; }
 
         [   Required(ErrorMessage = "O email é obrigatório"), 

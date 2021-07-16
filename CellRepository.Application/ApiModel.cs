@@ -58,6 +58,15 @@ namespace CellRepository.ApplicationService
         }
 
         /// <summary>
+        /// Get the whole list of comments to see what's happening
+        /// </summary>
+        /// <returns></returns>
+        public string GetFirstComment()
+        {
+            return _comments.ToArray()[0];
+        }
+
+        /// <summary>
         /// Set the information
         /// </summary>
         /// <param name="data"></param>

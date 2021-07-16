@@ -14,6 +14,7 @@
   <ItemGroup>
     <ProjectReference Include="..\CellRepository.ApplicationModels\CellRepository.ApplicationModels.csproj" />
     <ProjectReference Include="..\CellRepository.Application\CellRepository.ApplicationService.csproj" />
+    <ProjectReference Include="..\CellRepository.Generics\CellRepository.Shared.csproj" />
   </ItemGroup>
 
 </Project>

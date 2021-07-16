@@ -2,6 +2,7 @@ using AutoMapper;
 using CellRepository.DepencyInjection;
 using CellRepository.Infra.DataAcess.Context;
 using CellRepository.Infra.Mappings;
+using CellRepository.Shared;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -48,6 +49,12 @@ namespace SmartphoneApi
                         optionsBuilder.MigrationsAssembly("CellRepository.Infra.DataAcess")));
 
             InjectionFactory.ConfigureServices(services);
+
+            string keyCript = Configuration.GetValue<string>("PasswordKey");
+
+            ConfigJson configJson = new(keyCript);
+
+            services.AddSingleton(configJson);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

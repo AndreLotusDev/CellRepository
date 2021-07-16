@@ -1,3 +1,4 @@
+using CellRepository.Shared;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -15,8 +16,12 @@ namespace Cellpresentation.Client
             builder.RootComponents.Add<App>("#app");
 
             var baseAddress = builder.Configuration.GetValue<string>("BaseUrl");
+            var encryptKey = builder.Configuration.GetValue<string>("PasswordKey");
+
+            ConfigJson configJson = new(encryptKey);
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(baseAddress) });
+            builder.Services.AddSingleton(configJson);
 
             await builder.Build().RunAsync();
         }

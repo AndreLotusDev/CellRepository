@@ -24,7 +24,16 @@ namespace Cellpresentation.Client.Services
 
             var resultOfResponse = await response.Content.ReadAsStringAsync();
 
-            return JsonConvert.DeserializeObject<ApiModel<string>>(resultOfResponse);
+            ApiModel<string> responseStatusOfUserCreated = new();
+
+            await Task.Run(() =>
+            {
+                responseStatusOfUserCreated = JsonConvert.DeserializeObject<ApiModel<string>>(resultOfResponse);
+            });
+
+            Task.WaitAll();
+
+            return responseStatusOfUserCreated;
         }
     }
 }

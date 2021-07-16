@@ -1,0 +1,104 @@
+﻿@inject Config config;
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<form class="columns is-centered mt-4" id="form_register_user">
+
+    <div class="column is-half card">
+
+        <div class="has-text-centered">
+
+            <div class="column">
+                <p>Nome de usuário: </p>
+                <input class="input" type="text" placeholder="usuario" name="userName" id="userName" />
+
+                <p>Email: </p>
+                <input class="input" type="text" placeholder="usuario" name="email" id="email" />
+
+                <p>Password</p>
+                <input class="input" type="password" placeholder="usuario" name="password" id="password" />
+
+                <input class="checkbox" type="checkbox" onchange="on_chk_login_register_change()" id="chk_register_or_login" value=""/><p>Já sou cadastrado</p>
+
+                <button class="button is-success" id="login_or_register" type="button">Register</button>
+            </div>
+
+        </div>
+
+    </div>
+
+</form>
+
+<section class="columns is-centered mt-4" id="security_tips">
+
+    <div class="column is-half card">
+
+        <div class="has-text-centered">
+
+            <div class="column">
+                <p>A senha tem ser maior que 10 dígitos</p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+@section scripts {
+
+    <script>
+
+        $('#login_or_register').click(function () {
+
+            if ($("#chk_register_or_login").val()) {
+                return
+            }
+
+            registerNewUser()
+
+        })
+
+        function login() {
+            let user = {
+                Email: $()
+            }
+        }
+
+        function registerNewUser() {
+
+            let user = {
+                Email: $("#email").val(),
+                User: $("#userName").val(),
+                Password: $("#password").val()
+            }
+
+            $.post({
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                url: "@(config.BaseUrl)/Areas/User/RegisterANewUserAsync",
+                data: JSON.stringify(user),
+                success: function (res) {
+                    Swal.fire("Cadastro com sucesso")
+                }
+            })
+        }
+
+        function on_chk_login_register_change() {
+
+            let chkRegisterOrLogin = $("#chk_register_or_login").is(":checked");
+            let buttonLoginOrRegister = $("#login_or_register");
+
+            if (chkRegisterOrLogin) {
+                buttonLoginOrRegister.text("Login")
+            }
+            else {
+                buttonLoginOrRegister.text("Register")
+            }
+        }
+
+    </script>
+
+}

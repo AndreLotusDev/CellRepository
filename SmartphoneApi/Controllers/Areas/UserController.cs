@@ -1,6 +1,8 @@
 ﻿using CellRepository.ApplicationModels;
 using CellRepository.ApplicationService;
 using CellRepository.ApplicationService.Areas.User;
+using CellRepository.Shared;
+using CellRepository.Shared.Functions;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -10,9 +12,11 @@ namespace SmartphoneApi.Controllers.Areas
     public class UserController : Controller
     {
         private readonly IUserApplicationService _userService;
-        public UserController(IUserApplicationService userService)
+        private readonly ConfigJson _configJson;
+        public UserController(IUserApplicationService userService, ConfigJson configJson)
         {
             _userService = userService;
+            _configJson = configJson;
         }
 
         /// <summary>
@@ -23,6 +27,8 @@ namespace SmartphoneApi.Controllers.Areas
         [HttpPost, Route("RegisterANewUserAsync")]
         public async Task<IActionResult> RegisterANewUserAsync([FromBody]UserLoginDto user)
         {
+            user.Password = Sha256.Encrypt(user.Password, _configJson.EncriptString);
+
             ApiModel<string> modelToReturn = new();
 
             if (user == null)
@@ -45,11 +51,11 @@ namespace SmartphoneApi.Controllers.Areas
                     modelToReturn.AddComment(addUserServiceResponse.message);
                 }
 
-                return Ok(modelToReturn);
+                return Json(modelToReturn);
             }
             catch (System.Exception e)
             {
-                return BadRequest(e.Message);
+                return Json(e.Message);
             }          
         }
     }

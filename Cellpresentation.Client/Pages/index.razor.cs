@@ -1,5 +1,8 @@
 ﻿using Cellpresentation.Client.Services;
 using CellRepository.ApplicationModels;
+using CellRepository.ApplicationService;
+using CellRepository.Shared;
+using CellRepository.Shared.Functions;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
@@ -14,6 +17,11 @@ namespace Cellpresentation.Client.Pages
         [Inject]
         private HttpClient Client { get; set; }
 
+        [Inject]
+        private ConfigJson configJson { get; set; }
+
+        protected string messagesToDisplays { get; set; }
+
         protected UserLoginDto userDto = new();
 
         protected async Task RegisterUserAsync()
@@ -21,6 +29,8 @@ namespace Cellpresentation.Client.Pages
             UserApi userApi = new(Client);
 
             var response = await userApi.RegisterANewUserAsync(userDto);
+
+            messagesToDisplays = response.GetFirstComment();
         }
     }
 }
