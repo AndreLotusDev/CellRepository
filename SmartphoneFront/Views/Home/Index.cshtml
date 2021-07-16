@@ -20,7 +20,7 @@
                 <p>Password</p>
                 <input class="input" type="password" placeholder="usuario" name="password" id="password" />
 
-                <input class="checkbox" type="checkbox" onchange="on_chk_login_register_change()" id="chk_register_or_login" value=""/><p>Já sou cadastrado</p>
+                <input class="checkbox" type="checkbox" onchange="on_chk_login_register_change()" id="chk_register_or_login" value="" /><p>Já sou cadastrado</p>
 
                 <button class="button is-success" id="login_or_register" type="button">Register</button>
             </div>
@@ -53,25 +53,48 @@
 
         $('#login_or_register').click(function () {
 
-            if ($("#chk_register_or_login").val()) {
-                return
+            //makes logins instead of registering
+            if ($("#chk_register_or_login").is(":checked")) {
+                makesLogin()
             }
-
-            registerNewUser()
+            else
+                registerNewUser()
 
         })
 
-        function login() {
+        function makesLogin() {
+
             let user = {
-                Email: $()
+                Email: $("#email").val(),
+                NameInSite: $("#userName").val(),
+                Password: $("#password").val()
             }
+
+            $.post({
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                url: "@(config.BaseUrl)/Areas/User/Login",
+                data: JSON.stringify(user),
+                success: function (reponseLogin) {
+
+                    createCookie("__jwt", reponseLogin.token, 1);
+
+                    debugger
+                },
+                error: function (res) {
+
+                    debugger
+
+                    Swal.fire("Usuario nao logado")
+                }
+            })
         }
 
         function registerNewUser() {
 
             let user = {
                 Email: $("#email").val(),
-                User: $("#userName").val(),
+                NameInSite: $("#userName").val(),
                 Password: $("#password").val()
             }
 

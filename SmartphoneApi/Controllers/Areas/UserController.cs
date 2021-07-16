@@ -4,6 +4,7 @@ using CellRepository.ApplicationService.Areas.User;
 using CellRepository.Shared;
 using CellRepository.Shared.Functions;
 using Microsoft.AspNetCore.Mvc;
+using SmartphoneApi.Service;
 using System.Threading.Tasks;
 
 namespace SmartphoneApi.Controllers.Areas
@@ -59,6 +60,27 @@ namespace SmartphoneApi.Controllers.Areas
             {
                 return Json(e.Message);
             }          
+        }
+
+        [HttpPost, Route("Login")]
+        public async Task<ActionResult<dynamic>> Authenticate([FromBody] UserLoginDto user)
+        {
+            user.Password = Sha256.Encrypt(user.Password, _configJson.EncriptString);
+            var hasUser = await _userService.LoginAsync(user);
+
+            if (hasUser == null)
+                return NotFound(new { message = "Usuário ou senha inválidos" });
+
+            var token = new TokenService(_configJson).GenerateToken(hasUser);
+
+            hasUser.Password = "";
+
+            Response.StatusCode = 200; //OK
+            return new
+            {
+                user = hasUser,
+                token = token
+            };
         }
     }
 }

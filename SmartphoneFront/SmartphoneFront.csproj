@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Controller\" />
+    <Folder Include="Views\Controllers\" />
   </ItemGroup>
 
 </Project>

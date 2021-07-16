@@ -12,6 +12,16 @@ namespace CellRepository.Services.Areas.User
     {
         public UserLoginDomainService(IUnityOfWork uof): base(uof){}
 
+        public async Task<UserLoginEntity> LoginAsync(UserLoginEntity modelToRecover)
+        {
+            var userFound = await UOF.UserLoginRepository.GetAsync(m => m.Email == modelToRecover.Email && m.Password == modelToRecover.Password);
+
+            if (userFound is null)
+                return null;
+
+            return userFound;
+        }
+
         public async Task<(string message, bool status)> RegisterANewUserAsync(UserLoginEntity userToRegister)
         {
             var userAlreadyExist = await UOF.UserLoginRepository

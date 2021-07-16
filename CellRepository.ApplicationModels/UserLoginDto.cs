@@ -14,7 +14,7 @@ namespace CellRepository.ApplicationModels
         public string Password { get; set; }
 
         [Required(ErrorMessage = "O nome de usuário é obrigatório")]
-        public string UserName { get; set; }
+        public string NameInSite { get; set; }
 
         [   Required(ErrorMessage = "O email é obrigatório"), 
             EmailAddress(ErrorMessage = "Não é um email válido")]

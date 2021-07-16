@@ -10,5 +10,7 @@ namespace CellRepository.ApplicationService.Areas.User
     public interface IUserApplicationService
     {
         Task<(string message, bool status)> RegisterANewUserAsync(UserLoginDto userToRegister);
+
+        Task<UserLoginDto> LoginAsync(UserLoginDto userLoginDto);
     }
 }
