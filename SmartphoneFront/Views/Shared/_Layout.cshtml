@@ -1,5 +1,7 @@
 ﻿<!DOCTYPE html>
+
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -8,22 +10,95 @@
     <link rel="stylesheet" href="~/lib/bulma/css/bulma.min.css"/>
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
+
+<style>
+
+    #nav {
+        border-bottom: 2px solid black;
+    }
+
+    footer {
+        border-top: 2px solid black;
+
+        height: 50px;
+        line-height: normal !important;
+        padding: 0 0 0 0 !important;
+    }
+
+    #footer_content {
+        /*position: relative;
+        top: 20px;*/
+        display: flex;
+        justify-content: center;
+    }
+
+        #footer_content button {
+            margin: 0 10px;
+        }
+
+</style>
+
 <body>
 
-    <div class="container">
+    <nav id="nav" class="navbar is-fixed-top" role="navigation" aria-label="main navigation" style="margin-bottom: 200px">
+        <div class="navbar-brand">
+
+            <a class="navbar-item" href="">
+
+            </a>
+
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+
+            <div id="" class="navbar-menu">
+                <div class="navbar-start">
+
+                    <a class="navbar-item">
+                        Home
+                    </a>
+
+                    <a class="navbar-item" asp-controller="RegisterSmartphone" asp-action="Index">
+                        Top 100 celulares
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </nav>
+
+    <div class="container" style="margin-top: 100px">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
     </div>
 
-    <footer>
-        Footer
+    <footer class="footer" style="">
+        <div id="footer_content" class="card has-text-centered">
+            <div>
+                <button class="button is-success">Mande nos um email</button>
+            </div>
+
+            <div>
+                <button class="button is-warning">Reportar bug</button>
+            </div>
+
+            <div>
+                <button class="button is-info">Torne-se um redator</button>
+            </div>
+        </div>
     </footer>
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     @*<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>*@
     <script src="~/js/site.js" asp-append-version="true"></script>
-    <script src="~/sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <script src="~/sweetalert2/dist/sweetalert2.min.js"></script>
+    <script src="~/v8n/dist/v8n.browser.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 
 </body>

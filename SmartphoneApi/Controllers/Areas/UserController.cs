@@ -3,6 +3,8 @@ using CellRepository.ApplicationService;
 using CellRepository.ApplicationService.Areas.User;
 using CellRepository.Shared;
 using CellRepository.Shared.Functions;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SmartphoneApi.Service;
 using System.Threading.Tasks;
@@ -81,6 +83,12 @@ namespace SmartphoneApi.Controllers.Areas
                 user = hasUser,
                 token = token
             };
+        }
+
+        [HttpPost, Route("AuthenticationTest"), Authorize]
+        public IActionResult AuthenticationTest()
+        {
+            return Json("Its fine");
         }
     }
 }

@@ -23,6 +23,11 @@ namespace CellRepository.Infra.DataAcess.Context
             options.UseNpgsql();
         }
 
+        public CellRepositoryContext(DbContextOptionsBuilder<CellRepositoryContext> options, string connectionString)
+        {
+            options.UseNpgsql(connectionString);
+        }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             ConfigSmartphoneEntity.Config(modelBuilder);

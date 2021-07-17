@@ -56,7 +56,7 @@ namespace CellRepository.Test.Area.User
         /// </summary>
         /// <returns></returns>
         [Test]
-        public async Task Cannot_Create_The_SameUserName()
+        public async Task Cannot_Create_The_Same_UserName()
         {
             var alreadyExist = new UserLoginEntity { Email = "andrsoares957@yahoo.com", Password = "12345678910", NameInSite = "WhiteLotusZuko" };
             var expectedMessageError = "Este nome de usuário já está sendo usado";

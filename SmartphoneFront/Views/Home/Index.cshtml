@@ -4,6 +4,63 @@
     ViewData["Title"] = "Home Page";
 }
 
+@*<div class="columns card is-full is-centered">
+
+    <div class="column has-text-centered">
+        <p>Area do banner</p>
+    </div>
+
+</div>
+
+<div class="columns card is-centered mt-3">
+
+    <div class="column has-text-centered">
+        <p>Area de pesquisa</p>
+    </div>
+
+</div>
+
+<div class="columns card is-centered mt-3" style="height: 200px;">
+
+    <div class="column has-text-centered">
+
+        <table class="table" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>Pontuacao e foto</th>
+
+                    <th>Nome e precificacao</th>
+
+                    <th>Especificacao principal</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>FOTO</td>
+                    <td>200.99R$</td>
+                    <td>ANDROID 10</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="columns">
+            <div class="column is-4">
+                | ESPACO |
+            </div>
+
+            <div class="column is-4">
+                | ESPACO |
+            </div>
+
+            <div class="column is-4">
+                | ESPACO |
+            </div>
+        </div>
+
+    </div>
+
+</div>*@
+
 <form class="columns is-centered mt-4" id="form_register_user">
 
     <div class="column is-half card">
@@ -15,7 +72,7 @@
                 <input class="input" type="text" placeholder="usuario" name="userName" id="userName" />
 
                 <p>Email: </p>
-                <input class="input" type="text" placeholder="usuario" name="email" id="email" />
+                <input class="input" type="email" placeholder="usuario" name="email" id="email" />
 
                 <p>Password</p>
                 <input class="input" type="password" placeholder="usuario" name="password" id="password" />
@@ -23,6 +80,8 @@
                 <input class="checkbox" type="checkbox" onchange="on_chk_login_register_change()" id="chk_register_or_login" value="" /><p>Já sou cadastrado</p>
 
                 <button class="button is-success" id="login_or_register" type="button">Register</button>
+
+                <button class="button is-warning" id="validate_login" type="button">Validade my login</button>
             </div>
 
         </div>
@@ -51,6 +110,8 @@
 
     <script>
 
+        console.log(utilsHttps.address);
+
         $('#login_or_register').click(function () {
 
             //makes logins instead of registering
@@ -62,12 +123,32 @@
 
         })
 
+        $('#validate_login').click(function () {
+            validateMyLogin()
+        })
+
         function makesLogin() {
 
+            let emailText = $("#email").val()
+            let passwordText = $("#password").val()
+            let nameInSite = $("#userName").val()
+
+            if (emailText === "") {
+                Swal.fire("Digite seu email")
+
+                return
+            }
+
+            else if (passwordText === "") {
+                Swal.fire("Digite sua senha")
+
+                return
+            }
+
             let user = {
-                Email: $("#email").val(),
-                NameInSite: $("#userName").val(),
-                Password: $("#password").val()
+                Email: emailText,
+                NameInSite: nameInSite,
+                Password: passwordText
             }
 
             $.post({
@@ -78,8 +159,6 @@
                 success: function (reponseLogin) {
 
                     createCookie("__jwt", reponseLogin.token, 1);
-
-                    debugger
                 },
                 error: function (res) {
 
@@ -90,7 +169,42 @@
             })
         }
 
+        function validateMyLogin() {
+            $.post({
+                beforeSend: function (xhr) {
+                    xhr.setRequestHeader('Authorization', 'Bearer ' + getCookie("__jwt"));
+                },
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                url: "@(config.BaseUrl)/Areas/User/AuthenticationTest",
+                success: function (res) {
+
+
+                },
+                error: function (res) {
+
+
+                }
+            })
+        }
+
         function registerNewUser() {
+
+            let emailText = $("#email").val()
+            let passwordText = $("#password").val()
+            let nameInSite = $("#userName").val()
+
+            if (emailText === "") {
+                Swal.fire("Digite seu email")
+
+                return
+            }
+
+            else if (passwordText === "") {
+                Swal.fire("Digite sua senha")
+
+                return
+            }
 
             let user = {
                 Email: $("#email").val(),

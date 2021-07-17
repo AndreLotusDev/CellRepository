@@ -1,0 +1,109 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<style>
+    textarea {
+        resize: none;
+    }
+
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+</style>
+
+<form class="columns is-centered">
+
+    <div class="column is-12 card">
+
+        <div class="columns">
+
+            <div class="column is-4 card has-text-centered">
+                <div style="width: 80%; height: 80%">
+                    CAMERA PIC
+                </div>
+
+                <input type="file" />
+            </div>
+
+            <div class="column is-8">
+
+                <div class="has-text-centered">
+                    <label>Data de lançamento: </label>
+                    <input type="date" />
+
+                    <label>Nome do smartphone: </label>
+                    <input type="text" id="name_smartphone"/>
+
+                    <br />
+
+                    <label>Sistema operacional: </label>
+                    <input type="text" />
+                </div>
+
+                <div class="has-text-centered mt-3">
+                    <label>Descrição</label>
+                    <br />
+                    <textarea style="width: 70%"></textarea>
+                </div>
+
+                <div class="has-text-centered mt-3">
+                    <label>Peso</label>
+                    <br />
+                    <input type="number" />
+                </div>
+
+                <div class="has-text-centered mt-3">
+                    <label>Pontuação Antutu</label>
+                    <br />
+                    <input type="number" />
+                </div>
+
+                <div class="has-text-centered mt-3">
+                    <label>Câmera: </label>
+                    <input type="number" /><span>/10</span>
+
+                    <label>Perfomance: </label>
+                    <input type="number" /><span>/10</span>
+
+                    <label>Tela: </label>
+                    <input type="number" /><span>/10</span>
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="has-text-centered">
+            <div class="column is-12 mt-4">
+                <button class="button is-success" id="register_new_smartphone">Cadastrar novo celular</button>
+            </div>
+        </div>
+
+    </div>
+
+</form>
+
+@section scripts {
+
+    <script>
+
+        $("#register_new_smartphone").click(() => {
+
+            let toCheck = $("#name_smartphone").val()
+
+            v8n().string().testAsync(toCheck).then(result => { console.log("É um texto") }).catch(result => { console.log("É um numero | falha") })
+        })
+
+    </script>
+}
