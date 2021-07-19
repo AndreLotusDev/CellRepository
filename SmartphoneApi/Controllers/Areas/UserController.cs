@@ -68,7 +68,7 @@ namespace SmartphoneApi.Controllers.Areas
         public async Task<ActionResult<dynamic>> Authenticate([FromBody] UserLoginDto user)
         {
             user.Password = Sha256.Encrypt(user.Password, _configJson.EncriptString);
-            var hasUser = await _userService.LoginAsync(user);
+            (var hasUser, var message, var status) = await _userService.LoginAsync(user);
 
             if (hasUser == null)
                 return NotFound(new { message = "Usuário ou senha inválidos" });

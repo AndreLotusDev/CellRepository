@@ -24,15 +24,19 @@ namespace CellRepository.Services.Areas.User
         public async Task<(string message, bool status)> RegisterANewSmartphoneAsync(SmartphoneEntity model)
         {
             //Validation of the model
+            model.UpdateDateUpdate(); //I'm updating the date of the update (when the model is new or not)
 
-            if (!model.IsOkay())
+            if (!model.Validate())
             {
                 return ($"U need to validate {model.GetFirstValidationMessage()}",false);
             }
 
+            if (model.Id == 0)
+                model.UpdateDateOfCreation();
+
             var existOneModel = await UOF.SmartphoneRepository.GetAsync(m => m.SmartphoneName.ToUpper() == model.SmartphoneName.ToUpper());
 
-            if (!(existOneModel is null))
+            if (existOneModel != null)
             { 
                 AddMessage(nameof(SmartphoneEntity.SmartphoneName), "Already exists");
                 return ("Already exists a smartphone with this name in the database", false);
@@ -53,7 +57,7 @@ namespace CellRepository.Services.Areas.User
                 UOF.Dispose(); 
             }
 
-            return ("Updated with success", true);
+            return ("Created with success", true);
         }
     }
 }

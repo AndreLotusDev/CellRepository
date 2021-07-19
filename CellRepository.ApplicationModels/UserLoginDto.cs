@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CellRepository.Domain.Enum;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -21,6 +22,6 @@ namespace CellRepository.ApplicationModels
         public string Email { get; set; }
         public string RealName { get; set; }
 
-        public string Role { get; set; }
+        public ERoles Role { get; set; }
     }
 }

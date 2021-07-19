@@ -20,11 +20,13 @@ namespace CellRepository.ApplicationService.Areas.User
             _mapper = mapper;
         }
 
-        public async Task<UserLoginDto> LoginAsync(UserLoginDto userLoginDto)
+        public async Task<(UserLoginDto user, string message, bool status)> LoginAsync(UserLoginDto userLoginDto)
         {
             var modelToRecover = _mapper.Map<UserLoginEntity>(userLoginDto);
 
-            return _mapper.Map<UserLoginDto>(await _userDs.LoginAsync(modelToRecover));
+            (var user, var message, var status)  = await _userDs.LoginAsync(modelToRecover);
+
+            return (_mapper.Map<UserLoginDto>(user), message, status);
         }
 
         public async Task<(string message, bool status)> RegisterANewUserAsync(UserLoginDto userToRegister)

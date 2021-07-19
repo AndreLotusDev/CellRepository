@@ -7,6 +7,6 @@ namespace CellRepository.Services.Areas.User
     public interface IUserLoginDomainService : IDomainServiceBase<UserLoginEntity>
     {
         Task<(string message, bool status)> RegisterANewUserAsync(UserLoginEntity userToRegister);
-        Task<UserLoginEntity> LoginAsync(UserLoginEntity modelToRecover);
+        Task<(UserLoginEntity user, string message, bool status)> LoginAsync(UserLoginEntity modelToRecover);
     }
 }

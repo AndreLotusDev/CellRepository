@@ -3,15 +3,17 @@ using System;
 using CellRepository.Infra.DataAcess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace CellRepository.Infra.DataAcess.Migrations
 {
     [DbContext(typeof(CellRepositoryContext))]
-    partial class CellRepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20210719145643_antutu_point_column_bug")]
+    partial class antutu_point_column_bug
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -50,7 +52,7 @@ namespace CellRepository.Infra.DataAcess.Migrations
                     b.Property<DateTime>("LaunchDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("Date")
-                        .HasDefaultValue(new DateTime(2021, 7, 19, 14, 1, 3, 905, DateTimeKind.Local).AddTicks(9545))
+                        .HasDefaultValue(new DateTime(2021, 7, 19, 11, 56, 43, 355, DateTimeKind.Local).AddTicks(9974))
                         .HasComment("Describes the launching date of this smartphone");
 
                     b.Property<string>("OsName")
@@ -77,7 +79,7 @@ namespace CellRepository.Infra.DataAcess.Migrations
                         .HasColumnType("integer");
 
                     b.Property<decimal?>("Weight")
-                        .HasColumnType("numeric(6,2)")
+                        .HasColumnType("numeric(4,2)")
                         .HasComment("Describes the weight of the smartphone");
 
                     b.HasKey("Id");

@@ -3,15 +3,17 @@ using System;
 using CellRepository.Infra.DataAcess.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace CellRepository.Infra.DataAcess.Migrations
 {
     [DbContext(typeof(CellRepositoryContext))]
-    partial class CellRepositoryContextModelSnapshot : ModelSnapshot
+    [Migration("20210717065825_adding_smartphones_in_db")]
+    partial class adding_smartphones_in_db
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,7 +29,7 @@ namespace CellRepository.Infra.DataAcess.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<long?>("AntutuPoints")
+                    b.Property<long?>("AntutuPoint")
                         .HasColumnType("Bigint")
                         .HasComment("Display information about the score inside the antutu site");
 
@@ -50,7 +52,7 @@ namespace CellRepository.Infra.DataAcess.Migrations
                     b.Property<DateTime>("LaunchDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("Date")
-                        .HasDefaultValue(new DateTime(2021, 7, 19, 14, 1, 3, 905, DateTimeKind.Local).AddTicks(9545))
+                        .HasDefaultValue(new DateTime(2021, 7, 17, 3, 58, 25, 326, DateTimeKind.Local).AddTicks(4326))
                         .HasComment("Describes the launching date of this smartphone");
 
                     b.Property<string>("OsName")
@@ -58,6 +60,9 @@ namespace CellRepository.Infra.DataAcess.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)")
                         .HasComment("Describes the version of the smartphone");
+
+                    b.Property<int>("PerformanceInfoId")
+                        .HasColumnType("integer");
 
                     b.Property<decimal>("PerformancePoints")
                         .HasColumnType("Numeric(2)")
@@ -77,7 +82,7 @@ namespace CellRepository.Infra.DataAcess.Migrations
                         .HasColumnType("integer");
 
                     b.Property<decimal?>("Weight")
-                        .HasColumnType("numeric(6,2)")
+                        .HasColumnType("numeric(4,2)")
                         .HasComment("Describes the weight of the smartphone");
 
                     b.HasKey("Id");

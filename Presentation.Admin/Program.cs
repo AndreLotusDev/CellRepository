@@ -15,12 +15,12 @@ namespace Presentation.Admin
         [STAThread]
         static void Main()
         {
-            CompositionRoot.Wire(new ApplicationModule());
 
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
+            CompositionRoot.Wire(new ApplicationModule());
             Application.Run(CompositionRoot.Resolve<EnterPoint>());
         }
     }

@@ -23,7 +23,7 @@ namespace CellRepository.Infra.DataAcess.EntityConfig.Areas
                 .HasComment("This columns is to store the name of the smartphone")
                 .ValueGeneratedNever();
 
-            smartphone.Property(m => m.Description).IsRequired(false)
+            smartphone.Property(m => m.Description).IsRequired()
                 .HasMaxLength(1500)
                 .HasComment("To describe the principal characteristics of the smartphone")
                 .ValueGeneratedNever();
@@ -39,18 +39,18 @@ namespace CellRepository.Infra.DataAcess.EntityConfig.Areas
                 .HasComment("Describes the launching date of this smartphone");
 
             smartphone.Property(m => m.Weight).IsRequired(false)
-                .HasColumnType("Numeric(4,2)")
+                .HasColumnType("Numeric(6,2)")
                 .HasComment("Describes the weight of the smartphone");
 
-            smartphone.Property(m => m.AntutuPoint).IsRequired(false)
+            smartphone.Property(m => m.AntutuPoints).IsRequired(false)
                 .HasColumnType("Bigint")
                 .HasComment("Display information about the score inside the antutu site");
 
-            smartphone.Property(m => m.CameraPoints).IsRequired(false)
+            smartphone.Property(m => m.CameraPoints).IsRequired()
                 .HasColumnType("Numeric(2)")
                 .HasComment("Rate 0 to 10 about the camera");
 
-            smartphone.Property(m => m.ScreenPoints).IsRequired(false)
+            smartphone.Property(m => m.ScreenPoints).IsRequired()
                 .HasColumnType("Numeric(2)")
                 .HasComment("Rate 0 to 10 about the screen");
 

@@ -16,6 +16,8 @@ namespace CellRepository.Infra.Mappings
             cfg.CreateMap<UserLoginDto, UserLoginEntity>();
             cfg.CreateMap<UserLoginEntity, UserLoginDto>();
 
+            cfg.CreateMap<SmartphoneEntity, SmartphoneDto>();
+            cfg.CreateMap<SmartphoneDto, SmartphoneEntity>();
             return cfg;
         }
     }

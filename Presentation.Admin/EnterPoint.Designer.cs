@@ -34,6 +34,7 @@ namespace Presentation.Admin
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.lblPassword = new System.Windows.Forms.Label();
             this.gpbLogin = new System.Windows.Forms.GroupBox();
+            this.btnLoginRegister = new System.Windows.Forms.Button();
             this.chckLogin = new System.Windows.Forms.CheckBox();
             this.lblUser = new System.Windows.Forms.Label();
             this.txtUser = new System.Windows.Forms.TextBox();
@@ -74,6 +75,7 @@ namespace Presentation.Admin
             // 
             // gpbLogin
             // 
+            this.gpbLogin.Controls.Add(this.btnLoginRegister);
             this.gpbLogin.Controls.Add(this.chckLogin);
             this.gpbLogin.Controls.Add(this.lblUser);
             this.gpbLogin.Controls.Add(this.txtUser);
@@ -86,6 +88,16 @@ namespace Presentation.Admin
             this.gpbLogin.Size = new System.Drawing.Size(361, 337);
             this.gpbLogin.TabIndex = 4;
             this.gpbLogin.TabStop = false;
+            // 
+            // btnLoginRegister
+            // 
+            this.btnLoginRegister.Location = new System.Drawing.Point(145, 260);
+            this.btnLoginRegister.Name = "btnLoginRegister";
+            this.btnLoginRegister.Size = new System.Drawing.Size(75, 23);
+            this.btnLoginRegister.TabIndex = 7;
+            this.btnLoginRegister.Text = "Login";
+            this.btnLoginRegister.UseVisualStyleBackColor = true;
+            this.btnLoginRegister.Click += new System.EventHandler(this.btnLoginRegister_Click);
             // 
             // chckLogin
             // 
@@ -121,6 +133,7 @@ namespace Presentation.Admin
             this.ClientSize = new System.Drawing.Size(384, 361);
             this.Controls.Add(this.gpbLogin);
             this.Name = "EnterPoint";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Enter point";
             this.gpbLogin.ResumeLayout(false);
             this.gpbLogin.PerformLayout();
@@ -138,6 +151,7 @@ namespace Presentation.Admin
         private System.Windows.Forms.CheckBox chckLogin;
         private System.Windows.Forms.Label lblUser;
         private System.Windows.Forms.TextBox txtUser;
+        private System.Windows.Forms.Button btnLoginRegister;
     }
 }
 

@@ -1,4 +1,5 @@
-﻿using CellRepository.ApplicationService;
+﻿using CellRepository.ApplicationModels;
+using CellRepository.ApplicationService;
 using CellRepository.ApplicationService.Areas.Smartphone;
 using CellRepository.Domain.Entities;
 using CellRepository.Shared.Enums;
@@ -21,7 +22,7 @@ namespace SmartphoneApi.Controllers.Areas
         }
 
         [HttpPost]
-        public async Task<IActionResult> RegisterANewsSmartphoneAsync(SmartphoneEntity model)
+        public async Task<IActionResult> RegisterANewsSmartphoneAsync(SmartphoneDto model)
         {
             var result = await _smartphoneS.RegisterANewSmartphoneAsync(model);
 

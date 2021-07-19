@@ -13,14 +13,9 @@ namespace CellRepository.Infra.DataAcess.Context
                 
         }
 
-        public CellRepositoryContext(DbContextOptions<CellRepositoryContext> options) : base(options)
+        public CellRepositoryContext(DbContextOptions<CellRepositoryContext> dbCtx) : base(dbCtx)
         {
             
-        }
-
-        public CellRepositoryContext(DbContextOptionsBuilder<CellRepositoryContext> options) 
-        {
-            options.UseNpgsql();
         }
 
         public CellRepositoryContext(DbContextOptionsBuilder<CellRepositoryContext> options, string connectionString)

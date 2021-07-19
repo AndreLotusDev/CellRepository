@@ -29,7 +29,10 @@ namespace Presentation.Admin.Ninject
         public override void Load()
         {
             DbContextOptionsBuilder<CellRepositoryContext> option = new();
-            CellRepositoryContext context = new(option, "Server=localhost;Port=7272;Database=Smartphone;User Id=postgres;Password=vovodetopialandia321;Timeout=15;");
+            option.UseNpgsql("Server=localhost;Port=7272;Database=Smartphone;User Id=postgres;Password=vovodetopialandia321;Timeout=15;", 
+                optionsBuilder => optionsBuilder.MigrationsAssembly("CellRepository.Infra.DataAcess"));
+
+            CellRepositoryContext context = new(option.Options);
 
             var configMap = new MapperConfiguration(cfg =>
             {

@@ -10,15 +10,34 @@ namespace CellRepository.Domain.Entities
         public DateTime LaunchDate { get; init; }
         public double? Weight { get; init; }
 
-        public int PerformanceInfoId { get; init; }
-        public int? AntutuPoint { get; init; }
-        public int? CameraPoints { get; init; }
-        public int? ScreenPoints { get; init; }
+        public int? AntutuPoints { get; init; }
+        public int CameraPoints { get; init; }
+        public int ScreenPoints { get; init; }
         public int PerformancePoints { get; init; }
 
-        public override void Validate()
+        public override bool Validate()
         {
-            throw new NotImplementedException();
+            if(SmartphoneName.Length > 0)
+            {
+                AddNotification(nameof(SmartphoneName), "Cannt be empty the name of the smartphone");
+            }
+
+            if(Description.Length > 0)
+            {
+                AddNotification(nameof(Description), "Cannt be empty the descrption of the smartphone");
+            }
+
+            if(OsName.Length > 0)
+            {
+                AddNotification(nameof(OsName), "Cannt be empty the OS of the smartphone");
+            }
+
+            if(Weight <= 0)
+            {
+                AddNotification(nameof(Weight), "Weight needs to be");
+            }
+
+            return IsOkay();
         }
     }
 }

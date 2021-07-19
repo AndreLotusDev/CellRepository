@@ -39,7 +39,7 @@ namespace CellRepository.Test.Area.User
         /// Checks if the user cannt create a new user with the same email
         /// </summary>
         /// <returns></returns>
-        [Test]
+        [Test, Author("Andre SG")]
         public async Task Cannot_Create_A_Two_Times_The_Same_Email()
         {
             var alreadyExist = new UserLoginEntity { Email = "andrsoares955@yahoo.com", Password = "12345678910" };
@@ -55,7 +55,7 @@ namespace CellRepository.Test.Area.User
         /// Checks if the user cannt create a new user with the same username
         /// </summary>
         /// <returns></returns>
-        [Test]
+        [Test, Author("Andre SG")]
         public async Task Cannot_Create_The_Same_UserName()
         {
             var alreadyExist = new UserLoginEntity { Email = "andrsoares957@yahoo.com", Password = "12345678910", NameInSite = "WhiteLotusZuko" };
