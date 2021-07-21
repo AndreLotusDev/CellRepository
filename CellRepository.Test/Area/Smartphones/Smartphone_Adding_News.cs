@@ -49,6 +49,8 @@ namespace CellRepository.Test.Area.Smartphones
             _uof.SetupGet(x => x.SmartphoneRepository).Returns(_ulRepo.Object);
 
             smartphoneDomainService = new SmartphoneDomainService(_uof.Object);
+
+
         }
 
         /// <summary>
@@ -58,7 +60,9 @@ namespace CellRepository.Test.Area.Smartphones
         [Test, Author("Andre SG")]
         public async Task Not_Allow_To_Create_The_Same_Name_Again()
         {
-            SmartphoneEntity smartphoneEntity = new SmartphoneEntity { SmartphoneName = "blackshark4" };
+            SmartphoneEntity smartphoneEntity = 
+                new SmartphoneEntity { SmartphoneName = "blackshark4", Description = "A smartphone", OsName = "ZenOS", Weight = 100 };
+
             const string MESSAGE_EXPECTED = "Already exists a smartphone with this name in the database";
             const bool RESULT_EXPECTED = false;
 
@@ -71,7 +75,9 @@ namespace CellRepository.Test.Area.Smartphones
         [Test, Author("Andre SG")]
         public async Task Creating_Smartphone_With_Sucess()
         {
-            SmartphoneEntity smartphoneEntity = new SmartphoneEntity { SmartphoneName = "Zenfone 7" };
+            SmartphoneEntity smartphoneEntity = 
+                new SmartphoneEntity { SmartphoneName = "Zenfone 7" , Description = "A smartphone", OsName = "ZenOS", Weight = 100};
+
             const string MESSAGE_EXPECTED = "Created with success";
             const bool RESULT_EXPECTED = true;
 

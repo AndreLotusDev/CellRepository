@@ -17,24 +17,26 @@ namespace CellRepository.Domain.Entities
 
         public override bool Validate()
         {
-            if(SmartphoneName.Length > 0)
+            const int ZERO_LENGHT = 0;
+
+            if(SmartphoneName is null || SmartphoneName.Length == ZERO_LENGHT)
             {
                 AddNotification(nameof(SmartphoneName), "Cannt be empty the name of the smartphone");
             }
 
-            if(Description.Length > 0)
+            if(Description is null || Description.Length == ZERO_LENGHT)
             {
                 AddNotification(nameof(Description), "Cannt be empty the descrption of the smartphone");
             }
 
-            if(OsName.Length > 0)
+            if(OsName is null || OsName.Length == ZERO_LENGHT)
             {
                 AddNotification(nameof(OsName), "Cannt be empty the OS of the smartphone");
             }
 
-            if(Weight <= 0)
+            if(Weight is null || Weight == ZERO_LENGHT)
             {
-                AddNotification(nameof(Weight), "Weight needs to be");
+                AddNotification(nameof(Weight), "Weight cannt be 0");
             }
 
             return IsOkay();

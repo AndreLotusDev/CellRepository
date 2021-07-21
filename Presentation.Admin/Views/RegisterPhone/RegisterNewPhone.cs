@@ -1,5 +1,7 @@
 ﻿using CellRepository.ApplicationModels;
 using CellRepository.ApplicationService.Areas.Smartphone;
+using Imgur.API.Authentication;
+using Imgur.API.Endpoints;
 using Ninject;
 using Presentation.Admin.Helpers;
 using System;
@@ -8,6 +10,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;

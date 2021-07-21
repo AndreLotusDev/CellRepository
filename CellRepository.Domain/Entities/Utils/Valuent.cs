@@ -9,6 +9,11 @@ namespace CellRepository.Domain.Entities.Utils
         [NotMapped]
         public Dictionary<int, PropertyMessage> NotificationsList { get; private set; }
 
+        protected Valuent()
+        {
+            NotificationsList = new();
+        }
+
         public abstract bool Validate();
 
         /// <summary>

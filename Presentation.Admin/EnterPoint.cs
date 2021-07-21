@@ -2,6 +2,8 @@
 using CellRepository.ApplicationService.Areas.User;
 using CellRepository.Domain.Enum;
 using CellRepository.Shared.Functions;
+using Imgur.API.Authentication;
+using Imgur.API.Endpoints;
 using Presentation.Admin.Config;
 using Presentation.Admin.Ninject;
 using Presentation.Admin.Views;
@@ -10,7 +12,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -32,6 +36,10 @@ namespace Presentation.Admin
 
             txtEmail.Text = "a@yahoo.com";
             txtPassword.Text = "12345678910";
+        }
+        protected async override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
         }
 
         private void chckLogin_CheckedChanged(object sender, EventArgs e)

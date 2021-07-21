@@ -8,6 +8,7 @@ namespace CellRepository.ApplicationModels
 {
     public class SmartphoneDto
     {
+        public int Id { get; set; }
         public string SmartphoneName { get; set; }
         public string Description { get; set; }
         public string OsName { get; set; }

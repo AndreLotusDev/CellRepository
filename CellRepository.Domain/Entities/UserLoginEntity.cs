@@ -18,11 +18,6 @@ namespace CellRepository.Domain.Entities
         public string MagicCode { get; private set; }
         public ERoles Role { get; private set; }
 
-        public override void Validate()
-        {
-            throw new NotImplementedException();
-        }
-
         public void SetTentativeOfLoginRegister()
         {
             TentativesOfLogin = 0;
@@ -31,6 +26,11 @@ namespace CellRepository.Domain.Entities
         public void SetMagicCode()
         {
             MagicCode = Guid.NewGuid().ToString().Remove(23);
+        }
+
+        public override bool Validate()
+        {
+            throw new NotImplementedException();
         }
     }
 }
