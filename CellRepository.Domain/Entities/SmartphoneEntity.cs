@@ -15,6 +15,8 @@ namespace CellRepository.Domain.Entities
         public int ScreenPoints { get; init; }
         public int PerformancePoints { get; init; }
 
+        public string IdImage { get; private set; }
+
         public override bool Validate()
         {
             const int ZERO_LENGHT = 0;
@@ -40,6 +42,11 @@ namespace CellRepository.Domain.Entities
             }
 
             return IsOkay();
+        }
+
+        public void SetIdImage(string idImage)
+        {
+            IdImage = idImage;
         }
     }
 }

@@ -21,6 +21,7 @@
     <ProjectReference Include="..\CellRepository.Application\CellRepository.ApplicationService.csproj" />
     <ProjectReference Include="..\CellRepository.Domain\CellRepository.Domain.csproj" />
     <ProjectReference Include="..\CellRepository.Generics\CellRepository.Shared.csproj" />
+    <ProjectReference Include="..\CellRepository.Infra.AwsService\CellRepository.Infra.AwsService.csproj" />
     <ProjectReference Include="..\CellRepository.Infra.DataAcess\CellRepository.Infra.DataAcess.csproj" />
     <ProjectReference Include="..\CellRepository.Infra.Mappings\CellRepository.Infra.Mappings.csproj" />
     <ProjectReference Include="..\CellRepository.Services\CellRepository.DomainServices.csproj" />

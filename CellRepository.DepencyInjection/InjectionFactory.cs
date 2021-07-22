@@ -38,6 +38,7 @@ namespace CellRepository.DepencyInjection
             services.AddTransient<IUserLoginRepository, UserLoginRepository>();
             services.AddTransient<IUserLoginDomainService, UserLoginDomainService>();
             services.AddTransient<IUserApplicationService, UserLoginApplicationService>();
+
         }
     }
 }

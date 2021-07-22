@@ -19,11 +19,10 @@ namespace CellRepository.Infra.DataAcess.Interfaces.Repositories
         void Update(TEntity obj);
         void Remove(TEntity obj);
 
+
         TEntity Get(Expression<Func<TEntity, bool>> predicate);
 
         IEnumerable<TEntity> GetAllWith(Expression<Func<TEntity, bool>> predicate);
-
-        void Dispose();
 
         #region Async Methods
         Task AddAsync(TEntity obj);

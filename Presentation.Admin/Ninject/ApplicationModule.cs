@@ -21,6 +21,7 @@ using CellRepository.Infra.DataAcess.Interfaces.Repositories.User;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using CellRepository.Infra.Mappings;
+using CellRepository.Infra.AwsService.Amazon;
 
 namespace Presentation.Admin.Ninject
 {
@@ -40,6 +41,13 @@ namespace Presentation.Admin.Ninject
             });
             IMapper mapper = configMap.CreateMapper();
 
+            AwsService serviceCloud = new ();
+
+            var keyId = Environment.GetEnvironmentVariable("AMAZONKEYID", EnvironmentVariableTarget.User);
+            var keySecret = Environment.GetEnvironmentVariable("AMAZONKEYSECRET", EnvironmentVariableTarget.User);
+
+            serviceCloud.Start(keyId, keySecret);
+
             Bind(typeof(IUnityOfWork)).To(typeof(UnityOfWork));
             Bind(typeof(IContext)).ToConstant(context);
 
@@ -55,6 +63,7 @@ namespace Presentation.Admin.Ninject
             Bind(typeof(IUserApplicationService)).To(typeof(UserLoginApplicationService));
 
             Bind(typeof(IMapper)).ToConstant(mapper);
+            Bind(typeof(ICloudImgService)).ToConstant(serviceCloud);
         }
     }
 }

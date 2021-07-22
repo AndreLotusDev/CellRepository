@@ -25,9 +25,9 @@ namespace CellRepository.ApplicationService.Areas.Smartphone
         /// </summary>
         /// <param name="model"></param>
         /// <returns>Returns a message and a update state</returns>
-        public async Task<(string message, bool status)> RegisterANewSmartphoneAsync(SmartphoneDto model)
+        public async Task<(string message, bool status)> RegisterANewSmartphoneAsync(SmartphoneDto model, byte[] imgBytes)
         {
-            return await _smartphoneDS.RegisterANewSmartphoneAsync(_mapper.Map<SmartphoneEntity>(model));
+            return await _smartphoneDS.RegisterANewSmartphoneAsync(_mapper.Map<SmartphoneEntity>(model), imgBytes);
         }
 
         public async Task<IReadOnlyList<SmartphoneEntity>> Get100SmartphonesAsync()

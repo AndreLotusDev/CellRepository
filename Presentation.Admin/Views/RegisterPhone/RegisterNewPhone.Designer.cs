@@ -49,6 +49,9 @@ namespace Presentation.Admin.Views.RegisterPhone
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtWeight = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.imgFileSearch = new System.Windows.Forms.OpenFileDialog();
+            this.btnSelectArchive = new System.Windows.Forms.Button();
+            this.txtArchiveSaved = new System.Windows.Forms.TextBox();
             this.grpBxNames.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.gpbxDescript.SuspendLayout();
@@ -273,11 +276,34 @@ namespace Presentation.Admin.Views.RegisterPhone
             this.label3.TabIndex = 4;
             this.label3.Text = "Peso";
             // 
+            // imgFileSearch
+            // 
+            this.imgFileSearch.FileName = "openFileDialog1";
+            // 
+            // btnSelectArchive
+            // 
+            this.btnSelectArchive.Location = new System.Drawing.Point(97, 659);
+            this.btnSelectArchive.Name = "btnSelectArchive";
+            this.btnSelectArchive.Size = new System.Drawing.Size(75, 58);
+            this.btnSelectArchive.TabIndex = 1;
+            this.btnSelectArchive.Text = "Selecionar Arquivo";
+            this.btnSelectArchive.UseVisualStyleBackColor = true;
+            this.btnSelectArchive.Click += new System.EventHandler(this.btnSelectArchive_Click);
+            // 
+            // txtArchiveSaved
+            // 
+            this.txtArchiveSaved.Location = new System.Drawing.Point(179, 683);
+            this.txtArchiveSaved.Name = "txtArchiveSaved";
+            this.txtArchiveSaved.Size = new System.Drawing.Size(273, 23);
+            this.txtArchiveSaved.TabIndex = 12;
+            // 
             // RegisterNewPhone
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1350, 729);
+            this.Controls.Add(this.txtArchiveSaved);
+            this.Controls.Add(this.btnSelectArchive);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.btnSaveUpdate);
             this.Controls.Add(this.gpbxDateCreation);
@@ -296,6 +322,7 @@ namespace Presentation.Admin.Views.RegisterPhone
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -321,5 +348,8 @@ namespace Presentation.Admin.Views.RegisterPhone
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.TextBox txtWeight;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.OpenFileDialog imgFileSearch;
+        private System.Windows.Forms.Button btnSelectArchive;
+        private System.Windows.Forms.TextBox txtArchiveSaved;
     }
 }

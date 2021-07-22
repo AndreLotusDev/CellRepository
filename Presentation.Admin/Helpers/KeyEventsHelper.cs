@@ -15,13 +15,21 @@ namespace Presentation.Admin.Helpers
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public static void DonAllowToTypeChars(object sender, KeyPressEventArgs e)
+        public static void DontAllowToTypeChars(object sender, KeyPressEventArgs e)
         {
             var keyPressed = e.KeyChar;
 
             bool isAlphaBet = Regex.IsMatch(keyPressed.ToString(), "[a-z]", RegexOptions.IgnoreCase);
 
             if (isAlphaBet)
+                e.Handled = true;
+        }
+
+        public static void DontAllowToWriteMoreThan(object sender, KeyPressEventArgs e, int size)
+        {
+            var textBox = sender as TextBox;
+
+            if(textBox.Text.Count() >= size)
                 e.Handled = true;
         }
     }

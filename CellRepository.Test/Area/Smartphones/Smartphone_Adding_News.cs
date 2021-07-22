@@ -48,7 +48,7 @@ namespace CellRepository.Test.Area.Smartphones
 
             _uof.SetupGet(x => x.SmartphoneRepository).Returns(_ulRepo.Object);
 
-            smartphoneDomainService = new SmartphoneDomainService(_uof.Object);
+            smartphoneDomainService = new SmartphoneDomainService(_uof.Object, null);
 
 
         }

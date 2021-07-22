@@ -1,5 +1,6 @@
 ﻿using CellRepository.Domain.Entities;
 using CellRepository.DomainServices;
+using CellRepository.Infra.AwsService.Amazon;
 using CellRepository.Infra.DataAcess.UnityOfWork;
 using CellRepository.Services.Areas.Smartphone;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -12,7 +13,12 @@ namespace CellRepository.Services.Areas.User
 {
     public class SmartphoneDomainService : DomainServiceBase<SmartphoneEntity> ,ISmartphoneDomainService
     {
-        public SmartphoneDomainService(IUnityOfWork uof): base(uof){}
+        public ICloudImgService ServiceCloud { get; }
+
+        public SmartphoneDomainService(IUnityOfWork uof, ICloudImgService serviceCloud): base(uof)
+        {
+            ServiceCloud = serviceCloud;
+        }
 
         public async Task<IReadOnlyList<SmartphoneEntity>> GetTop100Smartphones()
         {
@@ -21,7 +27,7 @@ namespace CellRepository.Services.Areas.User
             return listOfSmartphonesModels.ToList().AsReadOnly();
         }
 
-        public async Task<(string message, bool status)> RegisterANewSmartphoneAsync(SmartphoneEntity model)
+        public async Task<(string message, bool status)> RegisterANewSmartphoneAsync(SmartphoneEntity model, byte[] imgBytes = null)
         {
             //Validation of the model
             model.UpdateDateUpdate(); //I'm updating the date of the update (when the model is new or not)
@@ -44,13 +50,23 @@ namespace CellRepository.Services.Areas.User
 
             try
             {
+                const bool IS_OKAY = true;
+
+                //if(ServiceCloud is not null)
+                //{
+                //    (string message, bool status, string idImage) = await ServiceCloud.PerformASave(imgBytes);
+
+                //    if (status == IS_OKAY)
+                //        model.SetIdImage(idImage);
+                //}
+
                 await UOF.SmartphoneRepository.AddAsync(model);
 
                 await UOF.CommitAsync();
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                return (ex.Message, false);
             }
             finally
             {

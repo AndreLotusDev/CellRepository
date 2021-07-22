@@ -10,7 +10,7 @@ namespace CellRepository.ApplicationService.Areas.Smartphone
 {
     public interface ISmartphoneApplicationService
     {
-        Task<(string message, bool status)> RegisterANewSmartphoneAsync(SmartphoneDto model);
+        Task<(string message, bool status)> RegisterANewSmartphoneAsync(SmartphoneDto model, byte[] imgBytes);
 
         Task<IReadOnlyList<SmartphoneEntity>> Get100SmartphonesAsync();
     }

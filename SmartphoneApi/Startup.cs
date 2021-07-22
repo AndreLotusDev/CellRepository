@@ -1,5 +1,6 @@
 using AutoMapper;
 using CellRepository.DepencyInjection;
+using CellRepository.Infra.AwsService.Amazon;
 using CellRepository.Infra.DataAcess.Context;
 using CellRepository.Infra.Mappings;
 using CellRepository.Shared;
@@ -12,6 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System;
 using System.Text;
 
 namespace SmartphoneApi
@@ -43,12 +45,21 @@ namespace SmartphoneApi
                 });
 
             IMapper mapper = configMap.CreateMapper();
-            services.AddSingleton(mapper); 
+            services.AddSingleton(mapper);
             #endregion
+
+            AwsService serviceCloud = new AwsService();
+
+            var keyId = Environment.GetEnvironmentVariable("AMAZONKEYID", EnvironmentVariableTarget.User);
+            var keySecret = Environment.GetEnvironmentVariable("AMAZONKEYSECRET", EnvironmentVariableTarget.User);
+
+            serviceCloud.Start(keyId, keySecret);
 
             services.AddDbContext<CellRepositoryContext>(
                 options => options.UseNpgsql(dbConnectionString, optionsBuilder =>
-                        optionsBuilder.MigrationsAssembly("CellRepository.Infra.DataAcess")));
+                {
+                    optionsBuilder.MigrationsAssembly("CellRepository.Infra.DataAcess");
+                }));
 
             InjectionFactory.ConfigureServices(services);
 
@@ -58,6 +69,7 @@ namespace SmartphoneApi
             ConfigJson configJson = new(keyCript, secretKey);
 
             services.AddSingleton(configJson);
+            services.AddSingleton(typeof(ICloudImgService), serviceCloud);
 
             var key = Encoding.ASCII.GetBytes(configJson.SecretKey);
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)

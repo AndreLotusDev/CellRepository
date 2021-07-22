@@ -22,9 +22,9 @@ namespace SmartphoneApi.Controllers.Areas
         }
 
         [HttpPost]
-        public async Task<IActionResult> RegisterANewsSmartphoneAsync(SmartphoneDto model)
+        public async Task<IActionResult> RegisterANewsSmartphoneAsync(SmartphoneDto model, byte[] imgBytes)
         {
-            var result = await _smartphoneS.RegisterANewSmartphoneAsync(model);
+            var result = await _smartphoneS.RegisterANewSmartphoneAsync(model, imgBytes);
 
             var message = result.message;
             var updateWithSuccess = result.status;
